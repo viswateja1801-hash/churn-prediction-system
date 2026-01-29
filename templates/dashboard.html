@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Churn Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark bg-dark px-4 d-flex justify-content-between">
+    <span class="navbar-brand fw-bold">
+        🤖 AI-Driven Churn Prediction
+    </span>
+
+    <!-- PROFILE DROPDOWN -->
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-4"></i>
+            {% if user %}
+                {{ user }}
+            {% else %}
+                Account
+            {% endif %}
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+            {% if user %}
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            {% else %}
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#registerModal">New User</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Customer Intelligence Dashboard</h2>
+        <p class="text-muted">
+            ML-powered churn prediction, retention & analytics
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow p-4 text-center h-100">
+                <h4>📊 Predict Churn</h4>
+                <p class="text-muted">ML-based churn prediction</p>
+                <a href="/predict" class="btn btn-primary">Start</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow p-4 text-center h-100">
+                <h4>🛡️ Retention Engine</h4>
+                <p class="text-muted">AI-driven retention actions</p>
+                <a href="/predict" class="btn btn-success">Generate</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow p-4 text-center h-100">
+                <h4>📈 Business Insights</h4>
+                <p class="text-muted">Analytics & trends</p>
+                <a href="/insights" class="btn btn-warning">View</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <h4 class="mb-3">Login</h4>
+
+            <form method="POST" action="/login">
+                <input class="form-control mb-3" name="username" placeholder="Username" required>
+                <input class="form-control mb-3" name="password" type="password" placeholder="Password" required>
+
+                <button class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <h4 class="mb-3">Create Account</h4>
+
+            <form method="POST" action="/register">
+                <input class="form-control mb-3" name="username" placeholder="Username" required>
+                <input class="form-control mb-3" name="password" type="password" placeholder="Password" required>
+
+                <button class="btn btn-success w-100">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
